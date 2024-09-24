@@ -9,16 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image("aaa")
-                .cornerRadius(20)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 40)
-            Text("Hello, world!")
+        VStack(alignment: .center) {
+           
+                Image("profile")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(1000)
+                    .padding()
+            Text("Anuj Chaudhari").font(.title).fontWeight(.light).multilineTextAlignment(.center).bold()
+            }
+            Spacer()
+            .padding()
         }
-        .padding()
     }
-}
+
 
 #Preview {
     ContentView()
