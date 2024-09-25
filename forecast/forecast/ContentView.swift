@@ -9,16 +9,62 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+        ZStack{
+            LinearGradient(gradient: Gradient(colors: [.blue, .white]),
+                           startPoint: .topLeading,
+                           endPoint: .bottomTrailing)
+                 .edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 8){
+                Text("Mississauga, ON")
+                    .font(.system(size: 32, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                    .padding()
+                VStack{
+                    Image(systemName: "cloud.sun.fill")
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 180, height:180)
+                    
+                    Text("72°")
+                        .font(.system(size: 70, weight: .medium))
+                        .foregroundColor(.white)
+                            }
+                
+                
+                ExtractedView()
+                            }
+                            Spacer()
+                        }
+                    }
+                }
 
 #Preview {
     ContentView()
+}
+
+struct WeatherDayView: View {
+    
+    var dayOFWeek: String
+    
+    var body: some View {
+        HStack{
+            VStack{
+                Text(dayOFWeek)
+                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                
+                Image(systemName: "cloud.sun.fill")
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 40, height:40)
+                
+                Text("72°")
+                    .font(.system(size: 28, weight: .medium))
+                    .foregroundColor(.white)
+            }
+        }
+    }
 }
