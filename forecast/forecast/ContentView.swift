@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]),
+            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightblue")]),
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                  .edgesIgnoringSafeArea(.all)
@@ -30,16 +30,36 @@ struct ContentView: View {
                     Text("72°")
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
-                            }
+                }
+                Spacer()
                 
-                
-                ExtractedView()
-                            }
+                HStack(spacing: 20){
+                    WeatherDayView(dayOFWeek: "TUE",
+                                   imageName: "cloud.sun.fill",
+                                   temperature: 76)
+                    
+                    WeatherDayView(dayOFWeek: "WED",
+                                   imageName: "sun.max.fill",
+                                   temperature: 88)
+
+                    WeatherDayView(dayOFWeek: "THUS",
+                                   imageName: "cloud.sun.fill",
+                                   temperature: 77)
+
+                    WeatherDayView(dayOFWeek: "FRI",
+                                   imageName: "cloud.rainbow.half.fill",
+                                   temperature: 70)
+                    
+                    WeatherDayView(dayOFWeek: "SAT",
+                                   imageName: "cloud.sun.rain.fill",
+                                   temperature: 68)
+                }
+         
                             Spacer()
                         }
                     }
                 }
-
+}
 #Preview {
     ContentView()
 }
@@ -47,6 +67,8 @@ struct ContentView: View {
 struct WeatherDayView: View {
     
     var dayOFWeek: String
+    var imageName: String
+    var temperature: Int
     
     var body: some View {
         HStack{
@@ -55,13 +77,13 @@ struct WeatherDayView: View {
                     .font(.system(size: 16, weight: .medium, design: .default))
                     .foregroundColor(.white)
                 
-                Image(systemName: "cloud.sun.fill")
+                Image(systemName: imageName)
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height:40)
                 
-                Text("72°")
+                Text("\(temperature)°")
                     .font(.system(size: 28, weight: .medium))
                     .foregroundColor(.white)
             }
