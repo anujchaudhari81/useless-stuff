@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isNight = true
+    
     var body: some View {
         ZStack{
-            BackgroundView(topColor: .blue, bottomColor:Color("lightblue") )
+            BackgroundView(isNight: isNight )
             
             VStack(spacing: 8){
                 CityTextView(cityName: "Cupertino, CA")
                 
-                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 73)
+                MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" :  "cloud.sun.fill", temperature: 73)
                 
                 HStack(spacing: 20){
                     WeatherDayView(dayOFWeek: "TUE",
@@ -65,15 +67,16 @@ struct WeatherDayView: View {
     var temperature: Int
     
     var body: some View {
-        HStack{
+        
             VStack{
                 Text(dayOFWeek)
                     .font(.system(size: 16, weight: .medium, design: .default))
                     .foregroundColor(.white)
                 
                 Image(systemName: imageName)
-                    .renderingMode(.original)
+                    .symbolRenderingMode(.palette)
                     .resizable()
+                    .foregroundStyle(.mint, .orange, .green)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height:40)
                 
@@ -83,21 +86,23 @@ struct WeatherDayView: View {
             }
         }
     }
-}
+
 
 struct BackgroundView: View {
-    var topColor: Color
-    var bottomColor: Color
+    
+    var isNight: Bool
     
     var body: some View {
         
         
-        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]),
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue,
+            isNight ? .gray : Color("lightBlue")]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea()
     }
 }
+                       
 
 struct CityTextView: View {
     
