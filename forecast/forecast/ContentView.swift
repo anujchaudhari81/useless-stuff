@@ -9,6 +9,8 @@ struct ContentView: View {
 
             VStack {
                 CityTextView(cityName: "Cupertino, CA")
+                
+                Spacer()
 
                 MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temperature: 73)
 
@@ -86,6 +88,7 @@ struct CityTextView: View {
             .foregroundColor(.white)
             .padding()
     }
+        
 }
 
 struct MainWeatherStatusView: View {
