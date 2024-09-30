@@ -25,11 +25,9 @@ struct ContentView: View {
                 Button {
                     isNight.toggle() // Toggles the isNight state variable
                 } label: {
-                    Text("Change Day Time")
-                        .frame(width: 280, height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .cornerRadius(15)
+                    WeatherButton(title:"Change Day Time",
+                                  textColor: .white,
+                                  backgroundColor: .gray)
                 }
 
                 Spacer()
@@ -70,12 +68,14 @@ struct BackgroundView: View {
     var isNight: Bool
 
     var body: some View {
-        LinearGradient(
-            gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .ignoresSafeArea()
+//        LinearGradient(
+//            gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
+//            startPoint: .topLeading,
+//            endPoint: .bottomTrailing
+        
+        ContainerRelativeShape()
+            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
+            .ignoresSafeArea()
     }
 }
 
