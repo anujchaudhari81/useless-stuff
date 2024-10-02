@@ -13,37 +13,45 @@ struct ContentView: View {
             CardView(isFaceUp: true)
             CardView()
             CardView()
+            CardView()
         }
         .foregroundColor(.orange)
         .padding()
+        }
     }
-}
+
 
 struct CardView: View {
-    var isFaceUp: Bool = false
+    
+    @State var isFaceUp = false
     
     var body: some View {
+       
         ZStack {
+            
+            let base = RoundedRectangle(cornerRadius: 12)
+              
             if isFaceUp {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.white) // Fill with white color when face up
-                    .overlay( // Overlay border on top
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.orange, lineWidth: 2)
+                   base.fill(Color.white)
+                    base.overlay(
+                        base.stroke(Color.orange, lineWidth: 2)
                     )
                 Text("😭")
                     .font(.largeTitle)
             } else {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.orange)
+                base.fill(Color.green)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.orange, lineWidth: 2)
+                        base.stroke(Color.orange, lineWidth: 2)
                     )
             }
         }
+        .onTapGesture {
+            isFaceUp = !isFaceUp
+        }
     }
 }
+
+
 
 #Preview {
     ContentView()
