@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GamePanel extends JPanel {
 
@@ -15,6 +16,12 @@ public class GamePanel extends JPanel {
     final int screenHeight=tileSize*maxScreenRow; //576 px
     
 
+    public GamePanel(){
+
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+    }
 
 
 }
