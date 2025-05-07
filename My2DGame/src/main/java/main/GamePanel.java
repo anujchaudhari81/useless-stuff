@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable{
     // Player's default positions
     int playerX=100;
     int playerY=100;
-    int playerSpeed=4;
+    int playerSpeed=4;// 4px is the speed of the player's movement
 
     public GamePanel(){
 
@@ -47,13 +47,22 @@ public class GamePanel extends JPanel implements Runnable{
             // UPDATE: update the position of the character
             update();
 
-            // CRAW: update the screen's graphics based on update() method
+            // DRAW: update the screen's graphics based on update() method
             repaint();
         }
     }
 
     public void update(){
+        if(keyH.upPressed){
+            playerY-=playerSpeed;
+        } else if (keyH.downPressed) {
+            playerY+=playerSpeed;
+        } else if (keyH.leftPressed) {
+            playerX-=playerSpeed;
+        } else if (keyH.rightPressed) {
+            playerX-=playerSpeed;
 
+        }
     }
     public void paintComponent(Graphics g){
 
