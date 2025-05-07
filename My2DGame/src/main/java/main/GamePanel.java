@@ -51,5 +51,13 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
 
         super.paintComponent(g); // parent's class is JPanel
+        
+        Graphics2D g2=(Graphics2D)g; //Changed Graphics to Graphics2D(coz we need some advance functions which Graphics doesn't have)
+        
+        g2.setColor(Color.white);
+        g2.fillRect(100, 100, tileSize, tileSize);
+        
+        g2.dispose();
+
     }
 }
