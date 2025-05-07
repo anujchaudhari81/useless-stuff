@@ -36,6 +36,20 @@ public class GamePanel extends JPanel implements Runnable{
 
         while(gameThread != null){
             System.out.println("abba dabba");
+
+            // UPDATE: update the position of the character
+            update();
+
+            // CRAW: update the screen's graphics based on update() method
+            repaint();
         }
+    }
+
+    public void update(){
+
+    }
+    public void paintComponent(Graphics g){
+
+        super.paintComponent(g); // parent's class is JPanel
     }
 }
