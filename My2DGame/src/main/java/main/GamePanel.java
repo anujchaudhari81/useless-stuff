@@ -3,7 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
     final int originalTileSize =16; // 16x16 tile
@@ -14,7 +14,9 @@ public class GamePanel extends JPanel {
     final int maxScreenRow=12;
     final int screenWidth=tileSize*maxScreenCol; //768 px
     final int screenHeight=tileSize*maxScreenRow; //576 px
-    
+
+    Thread gameThread;
+
 
     public GamePanel(){
 
@@ -23,5 +25,17 @@ public class GamePanel extends JPanel {
         this.setDoubleBuffered(true);
     }
 
+    public void startGameThread(){
+        gameThread = new Thread(this); // created a thread of the object,gameThread, which contains the run() method
+        gameThread.start(); // it will start a new separate thread, and will call run() method inside that thread :)
 
+    }
+
+    @Override //replacing the run() method from the Runnable interface
+    public void run() {
+
+        while(gameThread != null){
+            System.out.println("abba dabba");
+        }
+    }
 }
