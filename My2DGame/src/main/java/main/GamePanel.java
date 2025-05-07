@@ -15,6 +15,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenWidth=tileSize*maxScreenCol; //768 px
     final int screenHeight=tileSize*maxScreenRow; //576 px
 
+    //FPS
+    int FPS=60;
+
     KeyHandler keyH=new KeyHandler();
     Thread gameThread;
 
@@ -41,14 +44,30 @@ public class GamePanel extends JPanel implements Runnable{
     @Override //replacing the run() method from the Runnable interface
     public void run() {
 
+        double drawInterval=1000000000/FPS; //0.01666 seconds
+        double nextDrawTime=System.nanoTime()+drawInterval;
+
         while(gameThread != null){
-            System.out.println("abba dabba");
 
             // UPDATE: update the position of the character
             update();
-
             // DRAW: update the screen's graphics based on update() method
             repaint();
+
+            try{
+                double remainingTime=nextDrawTime-System.nanoTime();
+                remainingTime=remainingTime/1000000;
+
+                if(remainingTime<0){
+                    remainingTime=0;
+                }
+                Thread.sleep((long) remainingTime);
+
+                nextDrawTime += drawInterval;
+
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -60,7 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
         } else if (keyH.leftPressed) {
             playerX-=playerSpeed;
         } else if (keyH.rightPressed) {
-            playerX-=playerSpeed;
+            playerX+=playerSpeed;
 
         }
     }
