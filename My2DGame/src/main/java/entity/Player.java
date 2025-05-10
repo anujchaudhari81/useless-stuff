@@ -67,8 +67,8 @@ public class Player extends Entity{
             }
 
             spriteCounter++;
-            if (spriteCounter > 13) {
-                if (spriteNum == 1) {
+            if (spriteCounter > 13) { //here as update() is called 60times:-
+                if (spriteNum == 1) {                                      // it will switch images every 13 frames as SprintCounter>13
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
                     spriteNum = 1;
